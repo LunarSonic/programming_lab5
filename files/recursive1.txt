@@ -1,1 +1,1 @@
-execute_script files/recursive1.txt
+execute_script programming_lab5/files/recursive1.txt
