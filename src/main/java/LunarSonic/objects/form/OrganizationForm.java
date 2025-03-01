@@ -52,7 +52,7 @@ public class OrganizationForm extends BasicFormation<Organization> {
                 if (name.isEmpty()) {
                     logger.error("Поле не может быть пустым!");
                 } else if (!name.matches("[a-zA-Zа-яА-Я\\s']+")) {
-                    logger.error("Название организации может содержать только буквы и пробелы!");
+                    logger.error("Название организации может содержать только буквы, пробелы и кавычки!");
                 } else {
                     break;
                 }

@@ -37,7 +37,6 @@ public class AddIfMinCommand extends Command {
                 return new ExecutionResponse(false, "Неправильное кол-во аргументов!\n");
             OrganizationForm organizationForm = new OrganizationForm(collectionManager, console);
             Organization organization = organizationForm.form();
-            collectionManager.addIfMin(organization);
             boolean added = collectionManager.addIfMin(organization);
             if (!added) {
                 return new ExecutionResponse(false, "Организация не была добавлена!");

@@ -37,7 +37,6 @@ public class AddIfMaxCommand extends Command {
                 return new ExecutionResponse(false, "Неправильное кол-во аргументов!\n");
             OrganizationForm organizationForm = new OrganizationForm(collectionManager, console);
             Organization organization = organizationForm.form();
-            collectionManager.addIfMax(organization);
             boolean added = collectionManager.addIfMax(organization);
             if (!added) {
                 return new ExecutionResponse(false, "Организация не была добавлена!");

@@ -98,6 +98,7 @@ public class CollectionManager {
         }
         Organization maxElement = Collections.max(organizationCollection);
         logger.info("Максимальный элемент в коллекции: " + maxElement.getAnnualTurnover());
+        logger.info("Происходит сравнение с " + organization.getAnnualTurnover());
 
         if (organization.compareTo(maxElement) > 0) {
             organizationCollection.add(organization);
@@ -119,6 +120,7 @@ public class CollectionManager {
         }
         Organization minElement = Collections.min(organizationCollection);
         logger.info("Минимальный элемент в коллекции: " + minElement.getAnnualTurnover());
+        logger.info("Происходит сравнение с " + organization.getAnnualTurnover());
 
         if (organization.compareTo(minElement) < 0) {
             organizationCollection.add(organization);
