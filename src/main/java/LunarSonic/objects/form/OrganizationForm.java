@@ -11,6 +11,9 @@ import LunarSonic.utility.Console;
 import java.time.ZonedDateTime;
 import java.util.NoSuchElementException;
 
+/**
+ * Класс для формирования организации
+ */
 public class OrganizationForm extends BasicFormation<Organization> {
     private final CollectionManager collectionManager;
     private final Console console;
