@@ -1,0 +1,22 @@
+show
+add_if_min
+McDonald's
+107.24
+23
+10
+TRUST
+Polustrovskiy Avenue
+show
+max_by_postal_address
+sum_of_annual_turnover
+update 1
+Avito
+183.55
+193
+1000000
+PUBLIC
+Kamenoostrovsky Avenue
+info
+exit
+
+
