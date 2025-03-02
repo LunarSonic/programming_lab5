@@ -28,6 +28,6 @@ public class SaveCommand extends Command {
         if (!args[1].isEmpty())
             return new ExecutionResponse(false, "Неправильное кол-во аргументов!\n");
         collectionManager.saveCollection();
-        return new ExecutionResponse(true, "");
+        return new ExecutionResponse("Организация сохранена в CSV файл :)");
     }
 }
