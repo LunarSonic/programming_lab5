@@ -3,10 +3,7 @@ import LunarSonic.commands.*;
 import LunarSonic.commands.Command;
 import LunarSonic.commands.CommandName;
 import LunarSonic.utility.Console;
-import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.Map;
-import java.util.Queue;
+import java.util.*;
 
 /**
  * Класс для управления командами
@@ -15,7 +12,7 @@ public class CommandManager {
     private final Console console;
     private final CollectionManager collectionManager;
     private static final int COMMAND_HISTORY_SIZE = 15;
-    protected Queue<String> commandHistory = new LinkedList<>();
+    protected Queue<String> commandHistory = new ArrayDeque<>();
     private final Map<String, Command> commands = new HashMap<>(); //Словарь, который необходим для хранения команд и их названий
 
     /**
