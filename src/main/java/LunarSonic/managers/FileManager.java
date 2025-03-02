@@ -4,6 +4,9 @@ import LunarSonic.utility.AppLogger;
 import LunarSonic.utility.OrgCSVParser;
 import LunarSonic.utility.Console;
 import com.opencsv.CSVReader;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.io.*;
 import java.util.*;
 import java.util.stream.Collectors;
@@ -12,6 +15,7 @@ import java.util.stream.Collectors;
  * Класс, отвечающий за работу с файлами
  */
 public class FileManager {
+    private static final Logger log = LoggerFactory.getLogger(FileManager.class);
     private final Set<String> allFilePaths;
     private final String csvFilePath;
     private final AppLogger logger;
@@ -81,7 +85,7 @@ public class FileManager {
             outputStream.write(csvString.toString().getBytes());
             outputStream.flush();
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            logger.error("Не удалось записать коллекцию в CSV");
         }
     }
 

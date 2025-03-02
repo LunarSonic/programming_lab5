@@ -2,7 +2,7 @@ package LunarSonic;
 import LunarSonic.managers.CollectionManager;
 import LunarSonic.managers.CommandManager;
 import LunarSonic.managers.FileManager;
-import LunarSonic.managers.Runner;
+import LunarSonic.utility.Runner;
 import LunarSonic.utility.AppLogger;
 import LunarSonic.utility.Console;
 

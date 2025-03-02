@@ -1,7 +1,5 @@
-package LunarSonic.managers;
-import LunarSonic.utility.AppLogger;
-import LunarSonic.utility.Console;
-import LunarSonic.utility.ExecutionResponse;
+package LunarSonic.utility;
+import LunarSonic.managers.CommandManager;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.nio.file.Path;
@@ -68,7 +66,6 @@ public class Runner {
      * @return результат выполнения скрипта
      */
     private ExecutionResponse executeScript(String fileName) {
-
         logger.info("Проверяем путь: " + fileName);
         Path path = Paths.get(fileName);
         if (!path.isAbsolute()) {
