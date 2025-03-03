@@ -104,7 +104,7 @@ public class Runner {
                 console.println(statusOfCommand.getMessage());
 
                 if (!statusOfCommand.getResponse()) {
-                    console.println("Проверьте скрипт на корректность введенных данных!");
+                    console.println("Проверьте скрипт на корректность введенных данных и на рекурсию!");
                 }
             } while (console.hasNextInput() && statusOfCommand.getResponse() && !userCommand[0].equals("exit"));
 

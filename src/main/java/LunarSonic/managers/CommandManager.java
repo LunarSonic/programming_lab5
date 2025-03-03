@@ -35,7 +35,8 @@ public class CommandManager {
     }
 
     /**
-     * Метод для инициализации команд в Command Manager
+     * Метод для инициализации команд
+     * @return Map с командами
      */
     public Map<String, Command> initCommands() {
         return Map.ofEntries(
