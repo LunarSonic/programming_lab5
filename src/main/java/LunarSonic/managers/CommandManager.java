@@ -13,7 +13,7 @@ public class CommandManager {
     private final CollectionManager collectionManager;
     private static final int COMMAND_HISTORY_SIZE = 15;
     protected Queue<String> commandHistory = new ArrayDeque<>();
-    private final Map<String, Command> commands = new HashMap<>(); //Словарь, который необходим для хранения команд и их названий
+    private final Map<String, Command> commands; //Словарь, который необходим для хранения команд и их названий
 
     /**
      * Конструктор менеджера команд
@@ -23,7 +23,7 @@ public class CommandManager {
     public CommandManager(Console console, CollectionManager collectionManager) {
         this.console = console;
         this.collectionManager = collectionManager;
-        initCommands();
+        this.commands = initCommands();
     }
 
     /**
@@ -35,34 +35,27 @@ public class CommandManager {
     }
 
     /**
-     * Метод для регистрации команды
-     * @param commandName название команды
-     * @param command команда
-     */
-    public void registerCommand(String commandName, Command command) {
-        commands.put(commandName, command);
-    }
-
-    /**
      * Метод для инициализации команд в Command Manager
      */
-    public void initCommands() {
-        registerCommand(CommandName.add.name(), new AddCommand(collectionManager, console));
-        registerCommand(CommandName.add_if_max.name(), new AddIfMaxCommand(collectionManager, console));
-        registerCommand(CommandName.add_if_min.name(), new AddIfMinCommand(collectionManager, console));
-        registerCommand(CommandName.clear.name(), new ClearCommand(collectionManager, console));
-        registerCommand(CommandName.execute_script.name(), new ExecuteScriptCommand(console, this));
-        registerCommand(CommandName.exit.name(), new ExitCommand(collectionManager, console));
-        registerCommand(CommandName.help.name(), new HelpCommand(this, console));
-        registerCommand(CommandName.history.name(), new HistoryCommand(this, console));
-        registerCommand(CommandName.info.name(), new InfoCommand(collectionManager, console));
-        registerCommand(CommandName.max_by_postal_address.name(), new MaxByPostalAddressCommand(collectionManager, console));
-        registerCommand(CommandName.remove_all_by_annual_turnover.name(), new RemoveAllByAnnualTurnoverCommand(collectionManager, console));
-        registerCommand(CommandName.remove_by_id.name(), new RemoveByIdCommand(collectionManager, console));
-        registerCommand(CommandName.save.name(), new SaveCommand(collectionManager, console));
-        registerCommand(CommandName.show.name(), new ShowCommand(collectionManager, console));
-        registerCommand(CommandName.sum_of_annual_turnover.name(), new SumOfAnnualTurnoverCommand(collectionManager, console));
-        registerCommand(CommandName.update.name(), new UpdateCommand(collectionManager, console));
+    public Map<String, Command> initCommands() {
+        return Map.ofEntries(
+                Map.entry(CommandName.add.name(), new AddCommand(collectionManager, console)),
+                Map.entry(CommandName.add_if_max.name(), new AddIfMaxCommand(collectionManager, console)),
+                Map.entry(CommandName.add_if_min.name(), new AddIfMinCommand(collectionManager, console)),
+                Map.entry(CommandName.clear.name(), new ClearCommand(collectionManager, console)),
+                Map.entry(CommandName.execute_script.name(), new ExecuteScriptCommand(console, this)),
+                Map.entry(CommandName.exit.name(), new ExitCommand(collectionManager, console)),
+                Map.entry(CommandName.help.name(), new HelpCommand(this, console)),
+                Map.entry(CommandName.history.name(), new HistoryCommand(this, console)),
+                Map.entry(CommandName.info.name(), new InfoCommand(collectionManager, console)),
+                Map.entry(CommandName.max_by_postal_address.name(), new MaxByPostalAddressCommand(collectionManager, console)),
+                Map.entry(CommandName.remove_all_by_annual_turnover.name(), new RemoveAllByAnnualTurnoverCommand(collectionManager, console)),
+                Map.entry(CommandName.remove_by_id.name(), new RemoveByIdCommand(collectionManager, console)),
+                Map.entry(CommandName.save.name(), new SaveCommand(collectionManager, console)),
+                Map.entry(CommandName.show.name(), new ShowCommand(collectionManager, console)),
+                Map.entry(CommandName.sum_of_annual_turnover.name(), new SumOfAnnualTurnoverCommand(collectionManager, console)),
+                Map.entry(CommandName.update.name(), new UpdateCommand(collectionManager, console))
+        );
     }
 
     /**
