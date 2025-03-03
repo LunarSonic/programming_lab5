@@ -79,7 +79,6 @@ public class FileManager {
                 csvString.append(String.join(",", organizationData)).append("\n");
             }
             outputStream.write(csvString.toString().getBytes());
-            outputStream.flush();
         } catch (IOException e) {
             logger.error("Не удалось записать коллекцию в CSV");
         }
