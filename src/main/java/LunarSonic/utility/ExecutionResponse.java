@@ -19,7 +19,7 @@ public class ExecutionResponse {
 
     /**
      * Конструктор класса ExecutionResponse, по умолчанию команда была выполнена успешно
-     * @param message
+     * @param message сообщение о результате выполнения
      */
     public ExecutionResponse(String message) {
         this(true, message);
