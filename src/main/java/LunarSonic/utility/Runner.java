@@ -16,7 +16,6 @@ public class Runner {
     private int lengthRecursion = -1;
     private final Deque<String> scriptStack = new ArrayDeque<>();
 
-
     /**
      * Конструктор класса Runner
      * @param console консоль
@@ -43,8 +42,8 @@ public class Runner {
                 if (recStart < 0) recStart = i;
                 if (lengthRecursion < 0) {
                     console.useConsoleScanner();
-                    console.println("Была замечена рекурсия! Введите максимальную глубину рекурсии (0..500)");
-                    while (lengthRecursion < 0 || lengthRecursion > 500) {
+                    console.println("Была замечена рекурсия! Введите максимальную глубину рекурсии (0..300)");
+                    while (lengthRecursion < 0 || lengthRecursion > 300) {
                         try {
                             console.print("> ");
                             lengthRecursion = Integer.parseInt(console.readInput().trim());
@@ -54,7 +53,7 @@ public class Runner {
                     }
                     console.useFileScanner(scriptScanner);
                 }
-                if (i > recStart + lengthRecursion || i > 500)
+                if (i > recStart + lengthRecursion || i > 300)
                     return false;
             }
         }
@@ -77,7 +76,7 @@ public class Runner {
             return new ExecutionResponse(false,"Файла нет: " + path.toAbsolutePath());
         }
         if (!scriptFile.canRead()) {
-            return new ExecutionResponse("Нет прав на чтение файла: " + path.toAbsolutePath());
+            return new ExecutionResponse(false, "Нет прав на чтение файла: " + path.toAbsolutePath());
         }
         scriptStack.addLast(fileName);
         logger.info("Файл найден, начинается выполнение скрипта ...");
@@ -95,18 +94,19 @@ public class Runner {
                 //выводим команду с приглашением
                 console.println(console.getPrompt() + String.join(" ", userCommand));
 
-                if (userCommand[0].equals("exit"))
-                    break;
-
                 boolean isLaunchNeeded = true;
                 if (userCommand[0].equals("execute_script")) {
                     isLaunchNeeded = checkRecursion(userCommand[1], scannerForScript);
                 }
                 //запускается команда
                 statusOfCommand = isLaunchNeeded ? launchCommand(userCommand) : new ExecutionResponse(false, "Превышена max глубина рекурсии");
+                if (userCommand[0].equals("execute_script")) console.useFileScanner(scannerForScript);
                 console.println(statusOfCommand.getMessage());
 
-            } while (console.hasNextInput());
+                if (!statusOfCommand.getResponse()) {
+                    console.println("Проверьте скрипт на корректность введенных данных!");
+                }
+            } while (console.hasNextInput() && statusOfCommand.getResponse() && !userCommand[0].equals("exit"));
 
             //снова чтение из консоли
             console.useConsoleScanner();
@@ -117,7 +117,7 @@ public class Runner {
         } catch (NoSuchElementException e) {
             return new ExecutionResponse(false, "Файл пустой: " + path.toAbsolutePath());
         } catch (Exception e) {
-            return new ExecutionResponse(false, "Ошибка выполнения скрипта");
+            return new ExecutionResponse(false, "Ошибка выполнения скрипта " + e.getMessage());
         } finally {
             scriptStack.pollLast();
         }
@@ -125,7 +125,7 @@ public class Runner {
 
     /**
      * Метод, который отвечает за запуск команд
-     * @param userCommand массива строк, представляющих из себя команду и её аргументы
+     * @param userCommand массив строк, представляющих из себя команду и её аргументы
      * @return результат выполнения команды
      */
     private ExecutionResponse launchCommand(String[] userCommand) {
@@ -154,9 +154,10 @@ public class Runner {
             while (true) {
                 userCommand = (console.readInput().trim() + " ").split(" ", 2);
                 userCommand[1] = userCommand[1].trim();
-                commandManager.addCommandToHistory(userCommand[0]);
+                if (commandManager.getCommands().containsKey(userCommand[0])) {
+                    commandManager.addCommandToHistory(userCommand[0]);
+                }
                 statusOfCommand = launchCommand(userCommand);
-
                 if (userCommand[0].equals("exit"))
                     break;
                 console.println(statusOfCommand.getMessage());
@@ -165,7 +166,6 @@ public class Runner {
             logger.error("Пользовательский ввод не найден");
         } catch (IllegalStateException e) {
             logger.error("Непредвиденная ошибка");
-            System.exit(0);
         }
     }
 }

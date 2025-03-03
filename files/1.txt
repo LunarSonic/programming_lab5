@@ -3,4 +3,5 @@ info
 save
 help
 history
+proga
 exit

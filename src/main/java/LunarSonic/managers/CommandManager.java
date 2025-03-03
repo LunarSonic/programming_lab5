@@ -71,7 +71,7 @@ public class CommandManager {
      */
     public void addCommandToHistory(String command) {
         if (commandHistory.size() >= COMMAND_HISTORY_SIZE) {
-            commandHistory.poll();
+                commandHistory.poll();
         }
         commandHistory.offer(command);
     }

@@ -107,7 +107,7 @@ public class FileManager {
             csvReader.close();
             return collection;
         } catch (Exception e) {
-            logger.error("Ошибка при десериализации данных из CSV: " + e.getMessage());
+            logger.error("Ошибка при десериализации данных из CSV");
             return null;
         }
     }

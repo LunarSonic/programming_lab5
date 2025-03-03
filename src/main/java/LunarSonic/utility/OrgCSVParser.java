@@ -39,7 +39,7 @@ public class OrgCSVParser {
 
     /**
      * Метод, преобразующий объект Organization в строковый массив CSV
-     * @param organization - объект, который будет преобразован
+     * @param organization объект, который будет преобразован
      * @return массив строк
      */
     public static String[] toArray(Organization organization) {

@@ -30,6 +30,6 @@ public class ExitCommand extends Command {
     public ExecutionResponse execute(String[] args) {
         if (!args[1].isEmpty())
             return new ExecutionResponse(false, "Неправильное кол-во аргументов!\n");
-        return new ExecutionResponse("exit");
+        return new ExecutionResponse("");
     }
 }
