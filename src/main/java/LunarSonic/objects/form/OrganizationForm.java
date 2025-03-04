@@ -54,7 +54,7 @@ public class OrganizationForm extends BasicFormation<Organization> {
 
                 if (name.isEmpty()) {
                     logger.error("Поле не может быть пустым!");
-                } else if (!name.matches("^[a-zA-Zа-яА-Я]+(?:'?[a-zA-Zа-яА-Я]+)*(?:\\s[a-zA-Zа-яА-Я]+(?:'?[a-zA-Zа-яА-Я]+)*)*$")) {
+                } else if (!name.matches("^[a-zA-Zа-яА-Я]+(?:'?[a-zA-Zа-яА-Я]+)*(?:\\s[a-zA-Zа-яА-Я]+(?:[a-zA-Zа-яА-Я]+)*)*$")) {
                     logger.error("Название организации может содержать только буквы, пробелы и 1 кавычку!");
                 } else {
                     break;
