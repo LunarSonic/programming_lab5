@@ -1,24 +1,20 @@
 package LunarSonic.commands;
 import LunarSonic.managers.CommandManager;
-import LunarSonic.utility.Console;
 import LunarSonic.utility.ExecutionResponse;
 
 /**
  * Класс команды help
  */
 public class HelpCommand extends Command {
-    protected final Console console;
     protected final CommandManager commandManager;
 
     /**
      * Конструктор класса HelpCommand
      * @param commandManager менеджер команд
-     * @param console консоль
      */
-    public HelpCommand(CommandManager commandManager, Console console) {
+    public HelpCommand(CommandManager commandManager) {
         super(CommandName.help.name(),"вывести справку по доступным командам");
         this.commandManager = commandManager;
-        this.console = console;
     }
 
     /**

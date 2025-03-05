@@ -16,12 +16,11 @@ public class AddCommand extends Command {
     /**
      * Конструктор класса AddCommand
      * @param collectionManager менеджер коллекции
-     * @param console консоль
      */
-    public AddCommand(CollectionManager collectionManager, Console console) {
+    public AddCommand(CollectionManager collectionManager) {
         super(CommandName.add.name(), "добавить новый элемент в коллекцию");
         this.collectionManager = collectionManager;
-        this.console = console;
+        this.console = Console.getConsoleInstance();
     }
 
     /**
@@ -35,7 +34,7 @@ public class AddCommand extends Command {
             if (!args[1].isEmpty())
                 return new ExecutionResponse(false, "Неправильное кол-во аргументов!\n");
             console.println("Создаётся новая организация");
-            OrganizationForm organizationForm = new OrganizationForm(collectionManager, console);
+            OrganizationForm organizationForm = new OrganizationForm(collectionManager);
             Organization organization = organizationForm.form();
             if (organization.validate()) {
                 collectionManager.addElement(organization);

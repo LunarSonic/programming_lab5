@@ -7,18 +7,17 @@ import LunarSonic.utility.ExecutionResponse;
  * Класс команды remove_all_by_annual_turnover
  */
 public class RemoveAllByAnnualTurnoverCommand extends Command {
-    protected final CollectionManager collectionManager;
-    protected final Console console;
+    private final CollectionManager collectionManager;
+    private final Console console;
 
     /**
      * Конструктор класса RemoveAllByAnnualTurnover
      * @param collectionManager менеджер коллекции
-     * @param console консоль
      */
-    public RemoveAllByAnnualTurnoverCommand(CollectionManager collectionManager, Console console) {
+    public RemoveAllByAnnualTurnoverCommand(CollectionManager collectionManager) {
         super(CommandName.remove_all_by_annual_turnover.name(), "удалить из коллекции все элементы, значение поля annualTurnover которого эквивалентно заданному");
         this.collectionManager = collectionManager;
-        this.console = console;
+        this.console = Console.getConsoleInstance();
     }
 
     /**

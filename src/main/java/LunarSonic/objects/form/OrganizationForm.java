@@ -19,18 +19,18 @@ public class OrganizationForm extends BasicFormation<Organization> {
     private final Console console;
     private final AppLogger logger;
 
-    public OrganizationForm(CollectionManager collectionManager, Console console) {
+    public OrganizationForm(CollectionManager collectionManager) {
         this.collectionManager = collectionManager;
-        this.console = console;
+        this.console = Console.getConsoleInstance();
         this.logger = new AppLogger(OrganizationForm.class);
     }
 
     @Override
     public Organization form() throws FormBreak {
         var organization = new Organization(setId(),
-                askName(console), askCoordinates(console),
-                ZonedDateTime.now(), askAnnualTurnover(console),
-                askOrganizationType(console), askAddress(console)
+                askName(), askCoordinates(),
+                ZonedDateTime.now(), askAnnualTurnover(),
+                askOrganizationType(), askAddress()
         );
         if(!organization.validate()) throw new FormBreak();
         return organization;
@@ -44,7 +44,7 @@ public class OrganizationForm extends BasicFormation<Organization> {
      * Метод, который запращивает у пользователя название организации
      * @return name
      */
-    private String askName(Console console) throws FormBreak {
+    private String askName() throws FormBreak {
         String name;
         while (true) {
             console.println("Введите название организации: ");
@@ -71,19 +71,17 @@ public class OrganizationForm extends BasicFormation<Organization> {
 
     /**
      * Метод, который запрашивает координаты x и y
-     * @param console консоль
      * @return coordinates
      */
-    private Coordinates askCoordinates(Console console) throws FormBreak {
-        return new CoordinatesForm(console, logger).form();
+    private Coordinates askCoordinates() throws FormBreak {
+        return new CoordinatesForm().form();
     }
 
     /**
      * Метод, который запрашивает годовой оборот организации
-     * @param console консоль
      * @return annualTurnover
      */
-    private long askAnnualTurnover(Console console) throws FormBreak {
+    private long askAnnualTurnover() throws FormBreak {
         long annualTurnover;
         while (true) {
             try {
@@ -111,20 +109,18 @@ public class OrganizationForm extends BasicFormation<Organization> {
 
     /**
      * Метод, который запрашивает тип организации
-     * @param console консоль
      * @return organizationType
      */
-    private OrganizationType askOrganizationType(Console console) throws FormBreak {
-        return new OrganizationTypeForm(console, logger).form();
+    private OrganizationType askOrganizationType() throws FormBreak {
+        return new OrganizationTypeForm().form();
     }
 
     /**
      * Метод, который запрашивает адрес
-     * @param console консоль
      * @return address
      */
-    private Address askAddress(Console console){
-        return new AddressForm(console, logger).form();
+    private Address askAddress(){
+        return new AddressForm().form();
     }
 
     /**

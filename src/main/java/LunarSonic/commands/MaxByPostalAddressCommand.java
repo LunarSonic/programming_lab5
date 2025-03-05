@@ -1,25 +1,21 @@
 package LunarSonic.commands;
 import LunarSonic.managers.CollectionManager;
 import LunarSonic.objects.Organization;
-import LunarSonic.utility.Console;
 import LunarSonic.utility.ExecutionResponse;
 
 /**
  * Класс команды max_by_postal_address
  */
 public class MaxByPostalAddressCommand extends Command {
-    protected final CollectionManager collectionManager;
-    protected final Console console;
+    private final CollectionManager collectionManager;
 
     /**
      * Конструктор класса MaxByPostalAddressCommand
      * @param collectionManager менеджер коллекции
-     * @param console консоль
      */
-    public MaxByPostalAddressCommand(CollectionManager collectionManager, Console console) {
+    public MaxByPostalAddressCommand(CollectionManager collectionManager) {
         super(CommandName.max_by_postal_address.name(), "вывести любой объект из коллекции, значение поля postalAddress которого является максимальным");
         this.collectionManager = collectionManager;
-        this.console = console;
     }
 
     /**

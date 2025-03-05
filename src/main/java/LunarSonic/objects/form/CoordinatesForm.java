@@ -13,24 +13,23 @@ public class CoordinatesForm extends BasicFormation<Coordinates> {
     private final Console console;
     private final AppLogger logger;
 
-    public CoordinatesForm(Console console, AppLogger logger) {
-        this.console = console;
-        this.logger = logger;
+    public CoordinatesForm() {
+        this.console = Console.getConsoleInstance();
+        this.logger = new AppLogger(CoordinatesForm.class);
     }
 
     @Override
     public Coordinates form() throws FormBreak {
-        Float x = askX(console, logger);
-        Long y = askY(console, logger);
+        Float x = askX();
+        Long y = askY();
         return new Coordinates(x, y);
     }
 
     /**
      * Метод, который запрашивает координату X
-     * @param console консоль для ввода
      * @return значение координаты X
      */
-    private static Float askX(Console console, AppLogger logger) throws FormBreak {
+    private Float askX() throws FormBreak {
         float x;
         while (true) {
             try {
@@ -60,10 +59,9 @@ public class CoordinatesForm extends BasicFormation<Coordinates> {
 
     /**
      * Метод, который запрашивает координату Y
-     * @param console консоль для ввода
      * @return значение координаты Y
      */
-    private static Long askY(Console console, AppLogger logger) throws FormBreak {
+    private Long askY() throws FormBreak {
         long y;
         while (true) {
             try {

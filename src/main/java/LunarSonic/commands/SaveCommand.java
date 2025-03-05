@@ -1,21 +1,20 @@
 package LunarSonic.commands;
 import LunarSonic.managers.CollectionManager;
-import LunarSonic.utility.Console;
 import LunarSonic.utility.ExecutionResponse;
 
+/**
+ * Класс команды save
+ */
 public class SaveCommand extends Command {
-    protected final CollectionManager collectionManager;
-    protected final Console console;
+    private final CollectionManager collectionManager;
 
     /**
      * Конструктор класса SaveCommand
      * @param collectionManager менеджер коллекции
-     * @param console консоль
      */
-    public SaveCommand(CollectionManager collectionManager, Console console) {
+    public SaveCommand(CollectionManager collectionManager) {
         super(CommandName.save.name(), "сохранить коллекцию в файл");
         this.collectionManager = collectionManager;
-        this.console = console;
     }
 
     /**

@@ -23,10 +23,9 @@ public class ScriptManager {
 
     /**
      * Конструктор класса ScriptManager
-     * @param console консоль
      */
-    public ScriptManager(Console console) {
-        this.console = console;
+    public ScriptManager() {
+        this.console = Console.getConsoleInstance();
         this.logger = new AppLogger(ScriptManager.class);
     }
 
@@ -63,8 +62,9 @@ public class ScriptManager {
         return true;
     }
 
-    /**
-     * Метод для выполнения скрипта
+    /** Метод для выполнения скрипта
+     * @param fileName название файла со скриптом
+     * @param runner объект класса Runner
      * @return результат выполнения скрипта
      */
     public ExecutionResponse executeScript(String fileName, Runner runner) {

@@ -2,23 +2,17 @@ package LunarSonic;
 import LunarSonic.managers.CollectionManager;
 import LunarSonic.managers.CommandManager;
 import LunarSonic.managers.FileManager;
-import LunarSonic.managers.ScriptManager;
 import LunarSonic.utility.Runner;
-import LunarSonic.utility.AppLogger;
-import LunarSonic.utility.Console;
 
 /**
  * Класс, который запускает консольное приложение
  */
 public class ConsoleApp {
     public static void main(String[] args) {
-        var console = new Console();
-        var logger = new AppLogger(ConsoleApp.class);
-        var fileManager = new FileManager(console, logger);
+        var fileManager = new FileManager();
         var collectionManager = new CollectionManager(fileManager);
         collectionManager.loadCollection();
-        var commandManager = new CommandManager(console, collectionManager);
-        var scriptManager = new ScriptManager(console);
-        new Runner(console, commandManager, scriptManager).interactiveMode();
+        var commandManager = new CommandManager(collectionManager);
+        new Runner(commandManager).interactiveMode();
     }
 }

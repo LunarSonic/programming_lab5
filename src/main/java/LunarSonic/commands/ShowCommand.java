@@ -7,18 +7,17 @@ import LunarSonic.utility.ExecutionResponse;
  * Класс команды show
  */
 public class ShowCommand extends Command {
-    protected final CollectionManager collectionManager;
-    protected final Console console;
+    private final CollectionManager collectionManager;
+    private final Console console;
 
     /**
      * Конструктор класса ShowCommand
      * @param collectionManager менеджер коллекции
-     * @param console консоль
      */
-    public ShowCommand(CollectionManager collectionManager, Console console) {
+    public ShowCommand(CollectionManager collectionManager) {
         super(CommandName.show.name(), "вывести в стандартный поток вывода все элементы коллекции в строковом представлении");
         this.collectionManager = collectionManager;
-        this.console = console;
+        this.console = Console.getConsoleInstance();
     }
 
     /**

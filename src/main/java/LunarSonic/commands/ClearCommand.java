@@ -13,12 +13,11 @@ public class ClearCommand extends Command {
     /**
      * Конструктор класса ClearCommand
      * @param collectionManager менеджер коллекции
-     * @param console консоль
      */
-    public ClearCommand(CollectionManager collectionManager, Console console) {
+    public ClearCommand(CollectionManager collectionManager) {
         super(CommandName.clear.name(), "очистить коллекцию");
         this.collectionManager = collectionManager;
-        this.console = console;
+        this.console = Console.getConsoleInstance();
     }
 
     /**

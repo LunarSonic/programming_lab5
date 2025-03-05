@@ -1,25 +1,21 @@
 package LunarSonic.commands;
 import LunarSonic.managers.CollectionManager;
 import LunarSonic.objects.Organization;
-import LunarSonic.utility.Console;
 import LunarSonic.utility.ExecutionResponse;
 
 /**
  * Класс команды sum_of_annualTurnover
  */
 public class SumOfAnnualTurnoverCommand extends Command {
-    protected final CollectionManager collectionManager;
-    protected Console console;
+    private final CollectionManager collectionManager;
 
     /**
      * Конструктор класса SumOfAnnualTurnoverCommand
      * @param collectionManager менеджер коллекции
-     * @param console консоль
      */
-    public SumOfAnnualTurnoverCommand(CollectionManager collectionManager, Console console) {
+    public SumOfAnnualTurnoverCommand(CollectionManager collectionManager) {
         super(CommandName.sum_of_annual_turnover.name(), "вывести сумму значений поля annualTurnover для всех элементов коллекции");
         this.collectionManager = collectionManager;
-        this.console = console;
     }
 
     /**

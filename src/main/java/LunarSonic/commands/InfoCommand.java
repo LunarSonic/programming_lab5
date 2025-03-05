@@ -9,18 +9,17 @@ import java.time.format.DateTimeFormatter;
  * Класс команды info
  */
 public class InfoCommand extends Command {
-    protected final CollectionManager collectionManager;
-    protected final Console console;
+    private final CollectionManager collectionManager;
+    private final Console console;
 
     /**
      * Конструктор класса InfoCommand
      * @param collectionManager менеджер коллекции
-     * @param console консоль
      */
-    public InfoCommand(CollectionManager collectionManager, Console console) {
+    public InfoCommand(CollectionManager collectionManager) {
         super(CommandName.info.name(), "вывести в стандартный поток вывода информацию о коллекции");
         this.collectionManager = collectionManager;
-        this.console = console;
+        this.console = Console.getConsoleInstance();
     }
 
     /**

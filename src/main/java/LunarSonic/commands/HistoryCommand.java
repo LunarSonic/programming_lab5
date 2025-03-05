@@ -1,6 +1,5 @@
 package LunarSonic.commands;
 import LunarSonic.managers.CommandManager;
-import LunarSonic.utility.Console;
 import LunarSonic.utility.ExecutionResponse;
 import LunarSonic.utility.AppLogger;
 
@@ -8,19 +7,16 @@ import LunarSonic.utility.AppLogger;
  * Класс команды history для вывода последних 15 команд
  */
 public class HistoryCommand extends Command{
-    protected final CommandManager commandManager;
-    protected final Console console;
-    protected final AppLogger logger;
+    private final CommandManager commandManager;
+    private final AppLogger logger;
 
     /**
      * Конструктор класса HistoryCommand
      * @param commandManager менеджер команд
-     * @param console консоль
      */
-    public HistoryCommand(CommandManager commandManager, Console console) {
+    public HistoryCommand(CommandManager commandManager) {
         super(CommandName.history.name(), "вывести последние 15 команд (без их аргументов)");
         this.commandManager = commandManager;
-        this.console = console;
         this.logger = new AppLogger(HistoryCommand.class);
     }
 

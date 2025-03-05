@@ -14,13 +14,12 @@ public class Runner {
 
     /**
      * Конструктор класса Runner
-     * @param console консоль
      * @param commandManager менеджер команд
      */
-    public Runner(Console console, CommandManager commandManager, ScriptManager scriptManager) {
-        this.console = console;
+    public Runner(CommandManager commandManager) {
+        this.console = Console.getConsoleInstance();
         this.commandManager = commandManager;
-        this.scriptManager = scriptManager;
+        this.scriptManager = new ScriptManager();
         this.logger = new AppLogger(Runner.class);
     }
 

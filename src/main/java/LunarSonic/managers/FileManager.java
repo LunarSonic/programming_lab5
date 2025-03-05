@@ -19,11 +19,10 @@ public class FileManager {
 
     /**
      * Конструктор класса FileManager
-     * @param logger для вывода сообщений
      */
-    public FileManager(Console console, AppLogger logger) {
-        this.console = console;
-        this.logger = logger;
+    public FileManager() {
+        this.console = Console.getConsoleInstance();
+        this.logger = new AppLogger(FileManager.class);
         this.allFilePaths = loadFilesFromEnvironmentVariables();
         this.csvFilePath = findOrgCSVFilePath();
     }

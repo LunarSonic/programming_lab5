@@ -8,7 +8,24 @@ import java.util.Scanner;
  */
 public class Console {
 
-    protected PrintStream console;
+    /**
+     * Экземпляр класса Console (Singleton)
+     */
+    private static Console instance = null;
+
+    /**
+     * Геттер для экземпляра класса Console,
+     * если его нет, то создаётся новый
+     * @return instance
+     */
+    public static Console getConsoleInstance() {
+        if (instance == null) {
+            instance = new Console();
+        }
+        return instance;
+    }
+
+    private PrintStream console;
 
     /**
      * Строка приглашения
@@ -28,7 +45,7 @@ public class Console {
     /**
      * Конструктор класса Console
      */
-    public Console() {
+    private Console() {
         this.console = System.out;
     }
 
@@ -37,7 +54,7 @@ public class Console {
      * @param console консоль
      */
     public void setConsole(PrintStream console) {
-        this.console = console;
+        this.console= console;
     }
 
     /**
@@ -76,12 +93,9 @@ public class Console {
      * @return возвращает true, если ещё остались строки для чтения, иначе false
      */
     public boolean hasNextInput() {
-        if (fileScanner != null) {
-            return fileScanner.hasNextLine();
-        } else {
-            return defScanner.hasNextLine();
-        }
+        return (fileScanner != null) ? fileScanner.hasNextLine() : defScanner.hasNextLine();
     }
+
 
     /**
      * Геттер для получения текущего prompt (приглашения)

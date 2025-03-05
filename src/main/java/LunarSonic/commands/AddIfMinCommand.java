@@ -2,7 +2,6 @@ package LunarSonic.commands;
 import LunarSonic.exceptions.FormBreak;
 import LunarSonic.managers.CollectionManager;
 import LunarSonic.objects.Organization;
-import LunarSonic.utility.Console;
 import LunarSonic.utility.ExecutionResponse;
 import LunarSonic.objects.form.OrganizationForm;
 
@@ -11,17 +10,14 @@ import LunarSonic.objects.form.OrganizationForm;
  */
 public class AddIfMinCommand extends Command {
     private final CollectionManager collectionManager;
-    private final Console console;
 
     /**
      * Конструктор класса AddIfMinCommand
      * @param collectionManager менеджер коллекции
-     * @param console консоль
      */
-    public AddIfMinCommand(CollectionManager collectionManager, Console console) {
+    public AddIfMinCommand(CollectionManager collectionManager) {
         super(CommandName.add_if_min.name(), "добавить новый элемент в коллекцию, если его значение меньше, чем у наименьшего элемента этой коллекции");
         this.collectionManager = collectionManager;
-        this.console = console;
     }
 
     /**
@@ -35,7 +31,7 @@ public class AddIfMinCommand extends Command {
         try {
             if (!args[1].isEmpty())
                 return new ExecutionResponse(false, "Неправильное кол-во аргументов!\n");
-            OrganizationForm organizationForm = new OrganizationForm(collectionManager, console);
+            OrganizationForm organizationForm = new OrganizationForm(collectionManager);
             Organization organization = organizationForm.form();
             boolean added = collectionManager.addIfMin(organization);
             if (!added) {

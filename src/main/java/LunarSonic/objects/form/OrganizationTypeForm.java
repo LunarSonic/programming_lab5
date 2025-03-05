@@ -12,9 +12,9 @@ public class OrganizationTypeForm extends BasicFormation<OrganizationType> {
     private final Console console;
     private final AppLogger logger;
 
-    public OrganizationTypeForm(Console console, AppLogger logger) {
-        this.console = console;
-        this.logger = logger;
+    public OrganizationTypeForm() {
+        this.console = Console.getConsoleInstance();
+        this.logger = new AppLogger(OrganizationTypeForm.class);
     }
 
     @Override

@@ -3,7 +3,6 @@ import LunarSonic.exceptions.FormBreak;
 import LunarSonic.managers.CollectionManager;
 import LunarSonic.objects.Organization;
 import LunarSonic.objects.form.OrganizationForm;
-import LunarSonic.utility.Console;
 import LunarSonic.utility.ExecutionResponse;
 
 /**
@@ -11,17 +10,14 @@ import LunarSonic.utility.ExecutionResponse;
  */
 public class AddIfMaxCommand extends Command {
     private final CollectionManager collectionManager;
-    private final Console console;
 
     /**
      * Конструктор класса AddIfMaxCommand
      * @param collectionManager менеджер коллекции
-     * @param console консоль
      */
-    public AddIfMaxCommand(CollectionManager collectionManager, Console console) {
+    public AddIfMaxCommand(CollectionManager collectionManager) {
         super(CommandName.add_if_max.name(), "добавить новый элемент в коллекцию, если его значение превышает значение наибольшего элемента этой коллекции");
         this.collectionManager = collectionManager;
-        this.console = console;
     }
 
     /**
@@ -35,7 +31,7 @@ public class AddIfMaxCommand extends Command {
         try {
             if (!args[1].isEmpty())
                 return new ExecutionResponse(false, "Неправильное кол-во аргументов!\n");
-            OrganizationForm organizationForm = new OrganizationForm(collectionManager, console);
+            OrganizationForm organizationForm = new OrganizationForm(collectionManager);
             Organization organization = organizationForm.form();
             boolean added = collectionManager.addIfMax(organization);
             if (!added) {

@@ -10,18 +10,17 @@ import LunarSonic.utility.ExecutionResponse;
  * Класс команды update
  */
 public class UpdateCommand extends Command {
-    protected final CollectionManager collectionManager;
-    protected final Console console;
+    private final CollectionManager collectionManager;
+    private final Console console;
 
     /**
      * Конструктор класса UpdateCommand
      * @param collectionManager менеджер коллекции
-     * @param console консоль
      */
-    public UpdateCommand(CollectionManager collectionManager, Console console) {
+    public UpdateCommand(CollectionManager collectionManager) {
         super(CommandName.update.name(), "обновить значение элемента коллекции, id которого равен заданному");
         this.collectionManager = collectionManager;
-        this.console = console;
+        this.console = Console.getConsoleInstance();
     }
 
     /**
@@ -47,7 +46,7 @@ public class UpdateCommand extends Command {
             }
 
             console.println("Обновляется организация с id " + id);
-            OrganizationForm organizationForm = new OrganizationForm(collectionManager, console);
+            OrganizationForm organizationForm = new OrganizationForm(collectionManager);
             Organization newOrganization = organizationForm.form();
             if (newOrganization != null) {
                 collectionManager.replaceOrganizationById(id, newOrganization);

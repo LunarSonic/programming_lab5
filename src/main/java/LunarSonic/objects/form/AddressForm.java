@@ -12,21 +12,21 @@ public class AddressForm extends BasicFormation<Address> {
     private final AppLogger logger;
 
 
-    public AddressForm(Console console, AppLogger logger) {
-        this.console = console;
-        this.logger = logger;
+    public AddressForm() {
+        this.console = Console.getConsoleInstance();
+        this.logger = new AppLogger(AddressForm.class);
     }
 
     @Override
     public Address form() {
-        String street = askStreet(console, logger);
+        String street = askStreet();
         return new Address(street);
     }
 
     /**
      * Метод, который запрашивает улицу у пользователя
      */
-    private String askStreet(Console console, AppLogger logger){
+    private String askStreet(){
         String street;
         while (true) {
             try {

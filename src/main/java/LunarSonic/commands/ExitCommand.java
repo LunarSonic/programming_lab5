@@ -1,24 +1,16 @@
 package LunarSonic.commands;
-import LunarSonic.managers.CollectionManager;
-import LunarSonic.utility.Console;
 import LunarSonic.utility.ExecutionResponse;
 
 /**
  * Класс команды exit
  */
 public class ExitCommand extends Command {
-    protected final CollectionManager collectionManager;
-    protected final Console console;
 
     /**
      * Конструктор класса ExitCommand
-     * @param collectionManager менеджер коллекции
-     * @param console консоль
      */
-    public ExitCommand(CollectionManager collectionManager, Console console) {
+    public ExitCommand() {
         super(CommandName.exit.name(), "завершить программу (без сохранения в файл)");
-        this.collectionManager = collectionManager;
-        this.console = console;
     }
 
     /**

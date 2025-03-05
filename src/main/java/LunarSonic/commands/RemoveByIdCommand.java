@@ -8,18 +8,17 @@ import LunarSonic.utility.ExecutionResponse;
  * Класс команды remove_by_id
  */
 public class RemoveByIdCommand extends Command {
-    protected final CollectionManager collectionManager;
-    protected final Console console;
+    private final CollectionManager collectionManager;
+    private final Console console;
 
     /**
      * Конструктор класса RemoveByIdCommand
      * @param collectionManager менеджер коллекции
-     * @param console консоль
      */
-    public RemoveByIdCommand(CollectionManager collectionManager, Console console) {
+    public RemoveByIdCommand(CollectionManager collectionManager) {
         super(CommandName.remove_by_id.name(), "удалить элемент из коллекции по его id");
         this.collectionManager = collectionManager;
-        this.console = console;
+        this.console = Console.getConsoleInstance();
     }
 
     /**
