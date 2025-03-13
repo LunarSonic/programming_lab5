@@ -26,9 +26,8 @@ public class OrgCSVParser {
             Long y = Long.parseLong(args[3]);
             ZonedDateTime creationDate = ZonedDateTime.parse(args[4], DateTimeFormatter.ISO_ZONED_DATE_TIME);
             long annualTurnover = Long.parseLong(args[5]);
-            OrganizationType type = args[6].equals("null") ? null : OrganizationType.valueOf(args[6]);
+            OrganizationType type = (args[6].equals("null") || args[6].isEmpty()) ? null : OrganizationType.valueOf(args[6]);
             Address postalAddress = new Address(args[7]);
-
             Coordinates coordinates = new Coordinates(x, y);
             return new Organization(id, name, coordinates, creationDate, annualTurnover, type, postalAddress);
         } catch (Exception e) {
